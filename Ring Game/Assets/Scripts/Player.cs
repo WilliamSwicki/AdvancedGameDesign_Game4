@@ -13,9 +13,9 @@ public class Player : MonoBehaviour
     public float jumpPower;
     public float health;
 
-    public bool isFaceingRight = true;
+    public bool isFaceingRight;
     public bool isJumping=false;
-    Ray ray;
+    Ray rayDown;
     public float rayLength;
     RaycastHit hit;
     public LayerMask hitLayer;
@@ -27,22 +27,32 @@ public class Player : MonoBehaviour
     public GameObject target;
     public GameObject camera;
     public GameObject playerSprite;
+    public GameObject leftWallCheck;
+    public GameObject rightWallCheck;
+
+    public int maxClipSize = 5;
+    public int currentClip = 5;
+    public float fireCooldown;
+    public float fireRate = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        fireCooldown = fireRate;
+        isFaceingRight = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Execute logic
+        //firerate
+        fireCooldown -= Time.deltaTime;
         //raycast and jumping logic
-        ray = new Ray(transform.position, -transform.up);
+        rayDown = new Ray(transform.position, -transform.up);
         RaycastHit hit;
         Debug.DrawRay(transform.position, transform.TransformDirection(-Vector3.up) * rayLength, Color.yellow);
 
-        if(Physics.Raycast(ray,out hit, rayLength, hitLayer))
+        if(Physics.Raycast(rayDown, out hit, rayLength, hitLayer))
         {
             isJumping = false;
         }
@@ -55,7 +65,18 @@ public class Player : MonoBehaviour
     //movement
     private void FixedUpdate()
     {
-        transform.RotateAround(target.transform.position,Vector3.up, (-h*speed)*Time.deltaTime);
+        if (rightWallCheck.GetComponent<WallCollider>().isTouchingWall&& h>0)
+        {
+            
+        }
+        else if(leftWallCheck.GetComponent<WallCollider>().isTouchingWall && h<0)
+        {
+            
+        }
+        else
+        {
+            transform.RotateAround(target.transform.position, Vector3.up, (-h * speed) * Time.deltaTime);
+        }
     }
     public void Movement(InputAction.CallbackContext context)
     {
@@ -103,7 +124,12 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            Instantiate(bullet, attackLocation.transform.position, Quaternion.identity);
+            if (currentClip > 0 && fireCooldown<=0)
+            {
+                Instantiate(bullet, attackLocation.transform.position, Quaternion.identity);
+                currentClip--;
+                fireCooldown = fireRate;
+            }
         }
     }
     public IEnumerator Executing()

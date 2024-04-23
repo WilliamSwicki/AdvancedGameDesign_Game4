@@ -31,4 +31,19 @@ if(player.GetComponent<Player>().isFaceingRight)
         transform.LookAt(new Vector3(target.transform.position.x, this.transform.position.y, target.transform.position.z), Vector3.up);
         transform.RotateAround(target.transform.position, Vector3.up, (dir * speed) * Time.deltaTime);
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            if (player.GetComponent<Player>().currentClip < player.GetComponent<Player>().maxClipSize)
+            {
+                player.GetComponent<Player>().currentClip++;
+            }
+        }
+        if(other.gameObject.CompareTag("Enemy"))
+        {
+            other.GetComponent<EnemyScript>().health -= damage;
+        }
+        Destroy(this.gameObject);
+    }
 }

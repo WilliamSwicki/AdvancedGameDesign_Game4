@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using static UnityEditor.Timeline.TimelinePlaybackControls;
+
 
 public class Player : MonoBehaviour
 {
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     public GameObject attackLocation;
     public GameObject bullet;
     public GameObject target;
-    public GameObject camera;
+    public GameObject cameraTarget;
     public GameObject playerSprite;
     public GameObject leftWallCheck;
     public GameObject rightWallCheck;
@@ -108,7 +108,7 @@ public class Player : MonoBehaviour
         if (h < 0)
         {
             isFaceingRight = false;
-            playerSprite.transform.LookAt(new Vector3(camera.transform.position.x,this.transform.position.y, camera.transform.position.z),Vector3.up);
+            playerSprite.transform.LookAt(new Vector3(cameraTarget.transform.position.x,this.transform.position.y, cameraTarget.transform.position.z),Vector3.up);
         }
         if (h > 0)
         {

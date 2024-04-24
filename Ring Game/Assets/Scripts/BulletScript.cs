@@ -39,11 +39,16 @@ if(player.GetComponent<Player>().isFaceingRight)
             {
                 player.GetComponent<Player>().currentClip++;
             }
+            Destroy(this.gameObject);
         }
         if(other.gameObject.CompareTag("Enemy"))
         {
             other.GetComponent<EnemyScript>().health -= damage;
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
+        if(other.gameObject.CompareTag("Ground"))
+        {
+            Destroy(this.gameObject);
+        }
     }
 }

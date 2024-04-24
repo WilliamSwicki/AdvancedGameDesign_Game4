@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Center
+  - Enemy
+  - Ground
+  - Counter
   layers:
   - Default
   - TransparentFX

@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class Player : MonoBehaviour
@@ -12,6 +14,9 @@ public class Player : MonoBehaviour
     public float speed;
     public float jumpPower;
     public float health;
+    public float healthAmt;
+    public float maxHealth;
+    public Image healthBar;
 
     public bool isFaceingRight;
     public bool isJumping=false;
@@ -21,22 +26,25 @@ public class Player : MonoBehaviour
     public LayerMask hitLayer;
 
     public bool isExecuting;
+    public bool isAttacking;
     public GameObject attackLocation;
     public GameObject bullet;
-    public GameObject knifeAttack;
     public GameObject target;
     public GameObject camera;
     public GameObject playerSprite;
     public GameObject leftWallCheck;
     public GameObject rightWallCheck;
 
-    public int maxClipSize = 5;
-    public int currentClip = 5;
+    public float maxClipSize = 5;
+    public float currentClip = 5;
+    public float clipAmt = 1;
+    public Image clipBar;
     public float fireCooldown;
     public float fireRate = 0.1f;
     // Start is called before the first frame update
     void Start()
     {
+        maxHealth = 100;
         rb = GetComponent<Rigidbody>();
         fireCooldown = fireRate;
         isFaceingRight = true;
@@ -45,8 +53,21 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //health and ammo bars
+        healthAmt = health / maxHealth;
+        healthBar.fillAmount = healthAmt;
+
+        if(health<=0)
+        {
+            SceneManager.LoadScene(0);
+        }
+
+        clipAmt = currentClip / maxClipSize;
+        clipBar.fillAmount = clipAmt;
+
         //firerate
         fireCooldown -= Time.deltaTime;
+
         //raycast and jumping logic
         rayDown = new Ray(transform.position, -transform.up);
         RaycastHit hit;
@@ -110,14 +131,17 @@ public class Player : MonoBehaviour
     {
         if(context.performed)
         {
-            Instantiate(knifeAttack, attackLocation.transform.position, Quaternion.identity);
+            if(!isAttacking)
+            {
+                StartCoroutine(Attacking());
+            }
         }
     }
     public void Execute(InputAction.CallbackContext context)
     {
         if(context.performed)
         {
-            StartCoroutine("Parring()");
+            StartCoroutine(Executing());
         }
     }
     public void Shoot(InputAction.CallbackContext context)
@@ -135,7 +159,17 @@ public class Player : MonoBehaviour
     public IEnumerator Executing()
     {
         isExecuting = true;
+        attackLocation.GetComponent<Collider>().enabled = true;
         yield return new WaitForSeconds(0.25f);
+        attackLocation.GetComponent<Collider>().enabled = false;
         isExecuting = false;
+    }
+    public IEnumerator Attacking()
+    {
+        isAttacking = true;
+        attackLocation.GetComponent<Collider>().enabled = true;
+        yield return new WaitForSeconds(0.2f);
+        attackLocation.GetComponent<Collider>().enabled = false;
+        isAttacking = false;
     }
 }

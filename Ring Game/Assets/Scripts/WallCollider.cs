@@ -6,6 +6,7 @@ public class WallCollider : MonoBehaviour
 {
     public LayerMask mask;
     public bool isTouchingWall = false;
+    public bool isPlayer;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,15 +16,26 @@ public class WallCollider : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.layer == mask)
+        if (other.gameObject.CompareTag("Ground"))
         {
-            isTouchingWall=true;
+            isTouchingWall = true;
         }
-        else
+        if(isPlayer && other.gameObject.CompareTag("Enemy"))
+        {
+            isTouchingWall = true;
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.CompareTag("Ground"))
+        {
+            isTouchingWall = false;
+        }
+        if (isPlayer && other.gameObject.CompareTag("Enemy"))
         {
             isTouchingWall = false;
         }

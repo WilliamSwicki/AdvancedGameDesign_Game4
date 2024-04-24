@@ -6,11 +6,8 @@ using UnityEngine.SceneManagement;
 public class WinScript : MonoBehaviour
 {
     public int winScreen;
-    private void OnTriggerEnter(Collider other)
+    public void WinScene()
     {
-        if(other.gameObject.CompareTag("Player"))
-        {
-            SceneManager.LoadScene(winScreen);
-        }
+        SceneManager.LoadScene(winScreen);
     }
 }

@@ -16,16 +16,17 @@ public class EnemyCounter : MonoBehaviour
     void Update()
     {
         enemiesAlive = enemies.Length;
-        if (enemiesAlive <= 0)
-        {
-            this.GetComponent<WinScript>().WinScene();
-        }
+        
         for(int i = 0; i< enemies.Length; i++)
         {
             if (enemies[i] == null)
             {
                 enemiesAlive--;
             }
+        }
+        if (enemiesAlive <= 0)
+        {
+            this.GetComponent<WinScript>().WinScene();
         }
     }
 }

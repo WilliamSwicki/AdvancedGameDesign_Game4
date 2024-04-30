@@ -19,7 +19,11 @@ public class Player : MonoBehaviour
     public Image healthBar;
 
     public bool isFaceingRight;
-    public bool isJumping=false;
+
+    //public bool isJumping=false;
+    public int jumpCount = 1;
+    public int maxJumpCount = 1;
+
     Ray rayDown;
     public float rayLength;
     RaycastHit hit;
@@ -34,6 +38,7 @@ public class Player : MonoBehaviour
     public GameObject playerSprite;
     public GameObject leftWallCheck;
     public GameObject rightWallCheck;
+    public GameObject menuScreen;
 
     public float maxClipSize = 5;
     public float currentClip = 5;
@@ -75,12 +80,9 @@ public class Player : MonoBehaviour
 
         if(Physics.Raycast(rayDown, out hit, rayLength, hitLayer))
         {
-            isJumping = false;
+            jumpCount = maxJumpCount;
         }
-        else
-        {
-            isJumping = true;
-        }
+        
     }
 
     //movement
@@ -121,9 +123,11 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
-            if (!isJumping)
+            if (jumpCount >0)
             {
+                StartCoroutine(jumpTimer());
                 rb.AddForce((Vector3.up*jumpPower), ForceMode.Impulse);
+                jumpCount--;
             }
         }
     }
@@ -155,6 +159,26 @@ public class Player : MonoBehaviour
                 fireCooldown = fireRate;
             }
         }
+    }
+    public void Menu(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            if(menuScreen.gameObject.activeSelf)
+            {
+                menuScreen.gameObject.SetActive(false);
+            }
+            else
+            {
+                menuScreen.gameObject.SetActive(true);
+            }
+        }
+    }
+    public IEnumerator jumpTimer()
+    {
+        rayLength = 0;
+        yield return new WaitForSeconds(0.25f);
+        rayLength = 0.5f;
     }
     public IEnumerator Executing()
     {

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0001742a071feb2489fcfb2e126c41e2
+guid: 822b136a829d54645a2e195db3fbf347
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 240
+  spritePixelsToUnits: 192
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Demon_Enemy_02_Walking_Sprite_Alpha_0
+      name: Main_Player_Walking_Sprite_Alpha_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 288
-        height: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee3ca4cb78cd0244c846555141701a8d
-      internalID: -716559735
+      spriteID: e8b2c3ee60b1a744eb1bd71e80a27d63
+      internalID: -1432632194
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Enemy_02_Walking_Sprite_Alpha_1
+      name: Main_Player_Walking_Sprite_Alpha_1
       rect:
         serializedVersion: 2
         x: 288
         y: 0
         width: 288
-        height: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc43e4187ffcd7a4bbcda14f68dd1cfc
-      internalID: 1594755871
+      spriteID: baa50ae3aa13dd24abd9a0b52329caf5
+      internalID: 156802061
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Enemy_02_Walking_Sprite_Alpha_2
+      name: Main_Player_Walking_Sprite_Alpha_2
       rect:
         serializedVersion: 2
         x: 576
         y: 0
         width: 288
-        height: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,20 +166,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7155a2d890289f428b5f8f1a52fd1ef
-      internalID: 2143965311
+      spriteID: f1cdb1f3da620ad45a1cc7f98f308fe7
+      internalID: -974435745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Enemy_02_Walking_Sprite_Alpha_3
+      name: Main_Player_Walking_Sprite_Alpha_3
       rect:
         serializedVersion: 2
         x: 864
         y: 0
         width: 288
-        height: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -187,29 +187,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03c2c364223c9c74c964af3420c4b2e6
-      internalID: 1004364860
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demon_Enemy_02_Walking_Sprite_Alpha_4
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 288
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5c3aa067049aca49a9886d63ad6da41
-      internalID: 379307872
+      spriteID: 0dd640af795ceb94b8f6de9caf959119
+      internalID: 1308559082
       vertices: []
       indices: 
       edges: []
@@ -225,11 +204,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Demon_Enemy_02_Walking_Sprite_Alpha_0: -716559735
-      Demon_Enemy_02_Walking_Sprite_Alpha_1: 1594755871
-      Demon_Enemy_02_Walking_Sprite_Alpha_2: 2143965311
-      Demon_Enemy_02_Walking_Sprite_Alpha_3: 1004364860
-      Demon_Enemy_02_Walking_Sprite_Alpha_4: 379307872
+      Main_Player_Walking_Sprite_Alpha_0: -1432632194
+      Main_Player_Walking_Sprite_Alpha_1: 156802061
+      Main_Player_Walking_Sprite_Alpha_2: -974435745
+      Main_Player_Walking_Sprite_Alpha_3: 1308559082
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

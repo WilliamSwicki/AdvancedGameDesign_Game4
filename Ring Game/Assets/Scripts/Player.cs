@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
     public Image clipBar;
     public float fireCooldown;
     public float fireRate = 0.1f;
+    public Animator anim;
     // Start is called before the first frame update
     void Start()
     {
@@ -109,13 +110,19 @@ public class Player : MonoBehaviour
         //rotate player based on movment
         if (h < 0)
         {
+            anim.SetBool("isWalking", true);
             isFaceingRight = false;
             playerSprite.transform.LookAt(new Vector3(cameraTarget.transform.position.x,this.transform.position.y, cameraTarget.transform.position.z),Vector3.up);
         }
-        if (h > 0)
+        else if (h > 0)
         {
+            anim.SetBool("isWalking", true);
             isFaceingRight = true;
             playerSprite.transform.LookAt(new Vector3(target.transform.position.x, this.transform.position.y, target.transform.position.z), Vector3.up);
+        }
+        else
+        {
+                anim.SetBool("isWalking", false);
         }
 
     }
@@ -135,7 +142,8 @@ public class Player : MonoBehaviour
     {
         if(context.performed)
         {
-            if(!isAttacking)
+            anim.SetBool("isAttacking", true);
+            if (!isAttacking)
             {
                 StartCoroutine(Attacking());
             }
@@ -152,12 +160,17 @@ public class Player : MonoBehaviour
     {
         if (context.performed)
         {
+            anim.SetBool("isAttacking", true);
             if (currentClip > 0 && fireCooldown<=0)
             {
                 Instantiate(bullet, attackLocation.transform.position, Quaternion.identity);
                 currentClip--;
                 fireCooldown = fireRate;
             }
+        }
+        else
+        {
+            anim.SetBool("isAttacking", false);
         }
     }
     public void Menu(InputAction.CallbackContext context)
@@ -195,5 +208,6 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.2f);
         attackLocation.GetComponent<Collider>().enabled = false;
         isAttacking = false;
+        anim.SetBool("isAttacking", false);
     }
 }

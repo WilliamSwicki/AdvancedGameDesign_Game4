@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 0001742a071feb2489fcfb2e126c41e2
+guid: 514b2ebd3d8be064795a8d6e883bd19e
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 240
+  spritePixelsToUnits: 192
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -110,13 +110,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Demon_Enemy_02_Walking_Sprite_Alpha_0
+      name: Main_Player_Alpha_Sprites_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 288
-        height: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -124,20 +124,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee3ca4cb78cd0244c846555141701a8d
-      internalID: -716559735
+      spriteID: a101618828822b744a1dc90c72e0a6fe
+      internalID: -862324349
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Enemy_02_Walking_Sprite_Alpha_1
+      name: Main_Player_Alpha_Sprites_1
       rect:
         serializedVersion: 2
         x: 288
         y: 0
         width: 288
-        height: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -145,20 +145,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dc43e4187ffcd7a4bbcda14f68dd1cfc
-      internalID: 1594755871
+      spriteID: 882f8abeef965e349b6b75ae06ec628a
+      internalID: 1063366043
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Demon_Enemy_02_Walking_Sprite_Alpha_2
+      name: Main_Player_Alpha_Sprites_2
       rect:
         serializedVersion: 2
         x: 576
         y: 0
         width: 288
-        height: 240
+        height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -166,50 +166,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b7155a2d890289f428b5f8f1a52fd1ef
-      internalID: 2143965311
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demon_Enemy_02_Walking_Sprite_Alpha_3
-      rect:
-        serializedVersion: 2
-        x: 864
-        y: 0
-        width: 288
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 03c2c364223c9c74c964af3420c4b2e6
-      internalID: 1004364860
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Demon_Enemy_02_Walking_Sprite_Alpha_4
-      rect:
-        serializedVersion: 2
-        x: 1152
-        y: 0
-        width: 288
-        height: 240
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d5c3aa067049aca49a9886d63ad6da41
-      internalID: 379307872
+      spriteID: 787d9f26e68e7314993f5c922892b10d
+      internalID: -563672054
       vertices: []
       indices: 
       edges: []
@@ -225,11 +183,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Demon_Enemy_02_Walking_Sprite_Alpha_0: -716559735
-      Demon_Enemy_02_Walking_Sprite_Alpha_1: 1594755871
-      Demon_Enemy_02_Walking_Sprite_Alpha_2: 2143965311
-      Demon_Enemy_02_Walking_Sprite_Alpha_3: 1004364860
-      Demon_Enemy_02_Walking_Sprite_Alpha_4: 379307872
+      Main_Player_Alpha_Sprites_0: -862324349
+      Main_Player_Alpha_Sprites_1: 1063366043
+      Main_Player_Alpha_Sprites_2: -563672054
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

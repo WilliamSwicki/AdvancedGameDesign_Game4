@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyScript : MonoBehaviour
 {
     public GameObject attackLocation;
+    public float tempHealth;
     public float health;
     public float maxHealth;
     public float speed;
@@ -30,6 +31,7 @@ public class EnemyScript : MonoBehaviour
         player = GameObject.FindWithTag("Player");
         canAttack = true;
         target = GameObject.FindWithTag("Center");
+        tempHealth = health;
     }
 
     // Update is called once per frame
@@ -40,6 +42,11 @@ public class EnemyScript : MonoBehaviour
         {
             canExecute = true;
         }
+        if(tempHealth != health)
+        {
+            StartCoroutine(DamageFlash());
+        }
+        tempHealth = health;
         if(health<=0)
         {
             StartCoroutine(Dead());
@@ -100,7 +107,7 @@ public class EnemyScript : MonoBehaviour
     {
         canAttack = false;
         attackLocation.GetComponent<Collider>().enabled = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         attackLocation.GetComponent<Collider>().enabled = false;
         canAttack = true;
     }
@@ -111,5 +118,14 @@ public class EnemyScript : MonoBehaviour
         player.GetComponent<Player>().rightWallCheck.GetComponent<WallCollider>().isTouchingWall = false;
         yield return new WaitForSeconds(0.01f);
         Destroy(this.gameObject);
+    }
+    public IEnumerator DamageFlash()
+    {
+        for (int i = 0; i <= 4; i++)
+        {
+            sprite.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(0.1f);
+            sprite.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
 }

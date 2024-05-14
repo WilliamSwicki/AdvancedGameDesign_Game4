@@ -7,6 +7,7 @@ public class MeleeAttack : MonoBehaviour
     public int damage;
     public bool isPlayer;
     GameObject player;
+    public GameObject bloodSprey;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +24,12 @@ public class MeleeAttack : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && isPlayer && player.GetComponent<Player>().isAttacking)
         {
             other.gameObject.GetComponent<EnemyScript>().health -= damage;
+            Instantiate(bloodSprey,other.transform.position, Quaternion.identity);
         }
         if (other.gameObject.CompareTag("Player") && !isPlayer)
         {
             other.gameObject.GetComponent<Player>().health -= damage;
+            
         }
     }
 }

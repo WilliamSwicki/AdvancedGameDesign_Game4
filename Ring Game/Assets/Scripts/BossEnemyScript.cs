@@ -31,6 +31,11 @@ public class BossEnemyScript : EnemyScript
         {
             canExecute = true;
         }
+        if(tempHealth != health)
+        {
+            StartCoroutine(DamageFlash());
+            tempHealth = health;
+        }
         if (health <= 0)
         {
             StartCoroutine(Dead());
@@ -89,22 +94,7 @@ public class BossEnemyScript : EnemyScript
             canMove = true;
         }
     }
-    public IEnumerator Attack()
-    {
-        canAttack = false;
-        attackLocation.GetComponent<Collider>().enabled = true;
-        yield return new WaitForSeconds(0.5f);
-        attackLocation.GetComponent<Collider>().enabled = false;
-        canAttack = true;
-    }
-    public IEnumerator Dead()
-    {
-
-        player.GetComponent<Player>().leftWallCheck.GetComponent<WallCollider>().isTouchingWall = false;
-        player.GetComponent<Player>().rightWallCheck.GetComponent<WallCollider>().isTouchingWall = false;
-        yield return new WaitForSeconds(0.01f);
-        Destroy(this.gameObject);
-    }
+    
     void choseAttack()
     {
         if (timeBetween <= 0)

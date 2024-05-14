@@ -17,7 +17,10 @@ public class Player : MonoBehaviour
     public float healthAmt;
     public float maxHealth;
     public Image healthBar;
+    public float tempHealth;
+    public GameObject blood;
 
+    public GameObject sprite;
     public bool isFaceingRight;
 
     //public bool isJumping=false;
@@ -54,6 +57,7 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         fireCooldown = fireRate;
         isFaceingRight = true;
+        tempHealth = health;
     }
 
     // Update is called once per frame
@@ -65,8 +69,20 @@ public class Player : MonoBehaviour
 
         if(health<=0)
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(3);
         }
+
+        
+        if(tempHealth != health)
+        {
+            if (tempHealth > health)
+            {
+                StartCoroutine(DamageFlash());
+                Instantiate(blood,this.transform.position,Quaternion.identity);
+            }
+            tempHealth = health;
+        }
+
 
         clipAmt = currentClip / maxClipSize;
         clipBar.fillAmount = clipAmt;
@@ -89,6 +105,7 @@ public class Player : MonoBehaviour
     //movement
     private void FixedUpdate()
     {
+
         if (rightWallCheck.GetComponent<WallCollider>().isTouchingWall&& h>0)
         {
             
@@ -209,5 +226,14 @@ public class Player : MonoBehaviour
         attackLocation.GetComponent<Collider>().enabled = false;
         isAttacking = false;
         anim.SetBool("isAttacking", false);
+    }
+    public IEnumerator DamageFlash()
+    {
+        for (int i = 0; i <= 4; i++)
+        {
+            sprite.gameObject.GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(0.25f);
+            sprite.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
+        }
     }
 }

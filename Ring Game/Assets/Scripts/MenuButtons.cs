@@ -8,6 +8,7 @@ public class MenuButtons : MonoBehaviour
     public GameObject MenuScreen;
     public GameObject CreditsScreen;
 
+
     public void StartGame()
     {
         SceneManager.LoadScene(1);

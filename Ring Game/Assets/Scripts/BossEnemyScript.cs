@@ -13,6 +13,15 @@ public class BossEnemyScript : EnemyScript
     int randomNumber;
 
     public GameObject bullet;
+
+    public GameObject[] stalgmiteSpwan;
+    public GameObject stalamite;
+
+    /*public GameObject[] enemySpwan;
+    public GameObject enemy;*/
+
+    bool phase2;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -67,7 +76,13 @@ public class BossEnemyScript : EnemyScript
             dir = -1;
         }
         //
+        if(health <= (maxHealth * 0.3f) && !phase2)
+        {
+            Colaspe();
+            phase2 = true;
+        }
         choseAttack();
+        
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -82,9 +97,14 @@ public class BossEnemyScript : EnemyScript
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")||collision.gameObject.CompareTag("Enemy"))
         {
-
+            
+        }
+        if(collision.gameObject.CompareTag("Enemy"))
+        {
+            dir *= -1;
+            canMove = true;
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -99,7 +119,7 @@ public class BossEnemyScript : EnemyScript
     {
         if (timeBetween <= 0)
         {
-            randomNumber = Random.Range(1,4);
+            randomNumber = Random.Range(1,5);
             switch (randomNumber)
             {
                 case 1:
@@ -110,6 +130,10 @@ public class BossEnemyScript : EnemyScript
                     break;
                     case 3:
                     Turn();
+                    break;
+                    case 4:
+                    if(health<=(maxHealth*0.5f))
+                        Colaspe();
                     break;
                 default:
                     break;
@@ -126,6 +150,14 @@ public class BossEnemyScript : EnemyScript
         speed = 40;
         StartCoroutine(timer(1f));
         
+    }
+    void Colaspe()
+    {
+        for(int i = 0;i<stalgmiteSpwan.Length;i++)
+        {
+            Instantiate(stalamite, stalgmiteSpwan[i].transform.position, Quaternion.Euler(180, 0, 0));
+        }
+        player.GetComponent<Animator>().SetTrigger("ScreenShake");
     }
     void Turn()
     {

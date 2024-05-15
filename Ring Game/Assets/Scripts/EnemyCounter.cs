@@ -24,7 +24,7 @@ public class EnemyCounter : MonoBehaviour
                 enemiesAlive--;
             }
         }
-        if(enemiesAlive <=1)
+        if(enemiesAlive <=2)
         {
             this.GetComponent<SpwanObject>().spwanObject();
         }

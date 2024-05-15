@@ -44,6 +44,8 @@ public class EnemyScript : MonoBehaviour
         }
         if(tempHealth != health)
         {
+            player.GetComponent<Player>().audioSource.clip = player.GetComponent<Player>().clip[6];
+            player.GetComponent<Player>().audioSource.Play();
             StartCoroutine(DamageFlash());
         }
         tempHealth = health;
@@ -91,9 +93,14 @@ public class EnemyScript : MonoBehaviour
     }
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Enemy"))
         {
             
+        }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            dir *= -1;
+            canMove = true;
         }
     }
     private void OnCollisionExit(Collision collision)

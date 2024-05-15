@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Teleporter : MonoBehaviour
 {
-    public float teleportHight;
+    public Vector3 teleportHight;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +21,7 @@ public class Teleporter : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
 
-            other.gameObject.transform.position = new Vector3(other.gameObject.transform.position.x, teleportHight, other.gameObject.transform.position.z);
+            other.gameObject.transform.position = new Vector3(teleportHight.x, teleportHight.y, teleportHight.z);
         }
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -19,6 +20,7 @@ public class Player : MonoBehaviour
     public Image healthBar;
     public float tempHealth;
     public GameObject blood;
+    public GameObject sandParticles;
 
     public GameObject sprite;
     public bool isFaceingRight;
@@ -50,6 +52,8 @@ public class Player : MonoBehaviour
     public float fireCooldown;
     public float fireRate = 0.1f;
     public Animator anim;
+    public AudioClip[] clip;
+    public AudioSource audioSource;
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +62,7 @@ public class Player : MonoBehaviour
         fireCooldown = fireRate;
         isFaceingRight = true;
         tempHealth = health;
+        audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -67,22 +72,25 @@ public class Player : MonoBehaviour
         healthAmt = health / maxHealth;
         healthBar.fillAmount = healthAmt;
 
-        if(health<=0)
-        {
-            SceneManager.LoadScene(3);
-        }
+        cameraTarget.GetComponent<PostProcessVolume>().weight = Mathf.Abs(healthBar.fillAmount - 1.0f);
 
         
         if(tempHealth != health)
         {
             if (tempHealth > health)
             {
+                audioSource.clip = clip[0];
+                audioSource.Play();
                 StartCoroutine(DamageFlash());
                 Instantiate(blood,this.transform.position,Quaternion.identity);
             }
             tempHealth = health;
         }
-
+        if(health <= 0)
+        {
+            audioSource.clip = clip[4];
+            audioSource.Play();
+        }
 
         clipAmt = currentClip / maxClipSize;
         clipBar.fillAmount = clipAmt;
@@ -98,6 +106,10 @@ public class Player : MonoBehaviour
         if(Physics.Raycast(rayDown, out hit, rayLength, hitLayer))
         {
             jumpCount = maxJumpCount;
+            if(h !=0)
+            {
+                sandParticles.GetComponent<ParticleSystem>().Play();
+            }
         }
         
     }
@@ -149,6 +161,8 @@ public class Player : MonoBehaviour
         {
             if (jumpCount >0)
             {
+                audioSource.clip = clip[3];
+                audioSource.Play();
                 StartCoroutine(jumpTimer());
                 rb.AddForce((Vector3.up*jumpPower), ForceMode.Impulse);
                 jumpCount--;
@@ -159,6 +173,8 @@ public class Player : MonoBehaviour
     {
         if(context.performed)
         {
+            audioSource.clip = clip[5];
+            audioSource.Play();
             anim.SetBool("isAttacking", true);
             if (!isAttacking)
             {
@@ -180,6 +196,8 @@ public class Player : MonoBehaviour
             anim.SetBool("isAttacking", true);
             if (currentClip > 0 && fireCooldown<=0)
             {
+                audioSource.clip = clip[2];
+                audioSource.Play();
                 Instantiate(bullet, attackLocation.transform.position, Quaternion.identity);
                 currentClip--;
                 fireCooldown = fireRate;
@@ -215,6 +233,7 @@ public class Player : MonoBehaviour
         isExecuting = true;
         attackLocation.GetComponent<Collider>().enabled = true;
         yield return new WaitForSeconds(0.25f);
+        sprite.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         attackLocation.GetComponent<Collider>().enabled = false;
         isExecuting = false;
     }

@@ -9,6 +9,7 @@ public class BulletScript : MonoBehaviour
     public int dir;
     public GameObject target;
     public GameObject player;
+    public GameObject collishionParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -54,7 +55,14 @@ if(player.GetComponent<Player>().isFaceingRight)
         }
         if(other.gameObject.CompareTag("Ground"))
         {
-            Destroy(this.gameObject);
+            StartCoroutine(PlayParticle());
+
         }
+    }
+    public IEnumerator PlayParticle()
+    {
+        collishionParticles.GetComponent<ParticleSystem>().Play();
+        yield return new WaitForSeconds(collishionParticles.GetComponent<ParticleSystem>().main.duration);
+        Destroy(this.gameObject);
     }
 }

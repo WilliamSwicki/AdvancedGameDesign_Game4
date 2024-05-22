@@ -16,6 +16,7 @@ public class BossEnemyScript : EnemyScript
 
     public GameObject[] stalgmiteSpwan;
     public GameObject stalamite;
+    public GameObject stalamiteSpwaner;
 
     /*public GameObject[] enemySpwan;
     public GameObject enemy;*/
@@ -76,7 +77,7 @@ public class BossEnemyScript : EnemyScript
             dir = -1;
         }
         //
-        if(health <= (maxHealth * 0.3f) && !phase2)
+        if(health <= (maxHealth * 0.75f) && !phase2)
         {
             Colaspe();
             phase2 = true;
@@ -153,11 +154,8 @@ public class BossEnemyScript : EnemyScript
     }
     void Colaspe()
     {
-        for(int i = 0;i<stalgmiteSpwan.Length;i++)
-        {
-            Instantiate(stalamite, stalgmiteSpwan[i].transform.position, Quaternion.Euler(180, 0, 0));
-        }
         player.GetComponent<Animator>().SetTrigger("ScreenShake");
+        StartCoroutine(ColaspeTime());
     }
     void Turn()
     {
@@ -172,4 +170,12 @@ public class BossEnemyScript : EnemyScript
         yield return new WaitForSeconds(time);
         speed = 20;
     }
+    IEnumerator ColaspeTime()
+    {
+        stalamiteSpwaner.SetActive(true);
+        stalamiteSpwaner.GetComponent<ceilingSpike>().activate();
+        yield return new WaitForSeconds(1f);
+        stalamiteSpwaner.GetComponent<ceilingSpike>().deactivate();
+        stalamiteSpwaner.SetActive(false);
+    }    
 }

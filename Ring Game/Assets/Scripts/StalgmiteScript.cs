@@ -19,11 +19,19 @@ public class StalgmiteScript : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        Instantiate(particles,this.transform.position,Quaternion.Euler(0,180,0));
+        //Instantiate(particles,this.transform.position,Quaternion.Euler(0,180,0));
         if(other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Player>().health -= damage;
         }
-        Destroy(this.gameObject);
+        if(other.gameObject.name == "CeilingSpikes"||other.gameObject.CompareTag("Colaspe"))
+        {
+
+        }
+        else
+        {
+Destroy(this.gameObject);
+        }
+        
     }
 }

@@ -7,6 +7,7 @@ public class MenuButtons : MonoBehaviour
 {
     public GameObject MenuScreen;
     public GameObject CreditsScreen;
+    public GameObject ControlScreen;
 
 
     public void StartGame()
@@ -33,6 +34,19 @@ public class MenuButtons : MonoBehaviour
         {
             MenuScreen.SetActive(true);
             CreditsScreen.SetActive(false);
+        }
+    }
+    public void HowToPlay()
+    {
+        if (MenuScreen.activeSelf)
+        {
+            ControlScreen.SetActive(true);
+            MenuScreen.SetActive(false);
+        }
+        else
+        {
+            MenuScreen.SetActive(true);
+            ControlScreen.SetActive(false);
         }
     }
     public void Close()

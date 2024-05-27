@@ -218,9 +218,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6165816234005496640}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: de0fd08a3c7b0a8428bccce5daddcf2b, type: 2}
+  m_Controller: {fileID: 9100000, guid: 792f43da518d0e2469333f056a249659, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -244,6 +244,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackLocation: {fileID: 7692064947104349670}
+  tempHealth: 0
   health: 10
   maxHealth: 10
   speed: 20
@@ -405,7 +406,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8efada8a213cab74d96da25964f7cdb6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -513,3 +514,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   isPlayer: 0
+  bloodSprey: {fileID: 0}

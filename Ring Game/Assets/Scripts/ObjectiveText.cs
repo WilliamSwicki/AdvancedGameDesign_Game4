@@ -18,7 +18,7 @@ public class ObjectiveText : MonoBehaviour
     {
         if(!enemyCounter.canFightBoss)
         {
-            text.text = "Exorcise demons " + (enemyCounter.enemiesAlive-2) + "/" + (enemyCounter.enemies.Length - 2);
+            text.text = "Exorcise demons " + Mathf.Abs((enemyCounter.enemiesAlive-2)- (enemyCounter.enemies.Length - 2)) + "/" + (enemyCounter.enemies.Length - 2);
         }
         else
         {

@@ -6,10 +6,17 @@ public class StalgmiteScript : MonoBehaviour
 {
     public int damage;
     public GameObject particles;
+    public bool decoration;
+    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
-
+        rb = GetComponent<Rigidbody>();
+        if (decoration)
+        {
+            rb.useGravity = false;
+            this.GetComponent<BoxCollider>().enabled = false;
+        }
     }
 
     // Update is called once per frame

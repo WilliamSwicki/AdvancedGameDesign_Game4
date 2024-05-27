@@ -17,6 +17,8 @@ public class BossEnemyScript : EnemyScript
     public GameObject[] stalgmiteSpwan;
     public GameObject stalamite;
     public GameObject stalamiteSpwaner;
+    public GameObject stalamiteTell;
+    bool startTimer = true;
 
     /*public GameObject[] enemySpwan;
     public GameObject enemy;*/
@@ -36,7 +38,11 @@ public class BossEnemyScript : EnemyScript
     // Update is called once per frame
     void Update()
     {
-        timeBetween -= Time.deltaTime;
+        if(startTimer)
+        {
+            timeBetween -= Time.deltaTime;
+        }
+        
         if (health <= (maxHealth * 0.3f))
         {
             canExecute = true;
@@ -83,7 +89,13 @@ public class BossEnemyScript : EnemyScript
             phase2 = true;
         }
         choseAttack();
-        
+
+        //get stalgmites to fall
+        if (stalamiteTell.transform.position.y <= stalamiteTell.GetComponent<FallingRock>().endPos.y)
+        {
+            StartCoroutine(ColaspeTime());
+        }
+
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -120,6 +132,7 @@ public class BossEnemyScript : EnemyScript
     {
         if (timeBetween <= 0)
         {
+            startTimer = false;
             randomNumber = Random.Range(1,5);
             switch (randomNumber)
             {
@@ -154,21 +167,24 @@ public class BossEnemyScript : EnemyScript
     }
     void Colaspe()
     {
+        stalamiteTell.GetComponent<FallingRock>().isFalling = true;
         player.GetComponent<Animator>().SetTrigger("ScreenShake");
-        StartCoroutine(ColaspeTime());
     }
     void Turn()
     {
         dir *= -1;
+        startTimer = true;
     }
     void Shoot()
     {
         Instantiate(bullet, attackLocation.transform.position, Quaternion.identity);
+        startTimer = true;
     }
     IEnumerator timer(float time)
     {
         yield return new WaitForSeconds(time);
         speed = 20;
+        startTimer=true;
     }
     IEnumerator ColaspeTime()
     {
@@ -177,5 +193,6 @@ public class BossEnemyScript : EnemyScript
         yield return new WaitForSeconds(1f);
         stalamiteSpwaner.GetComponent<ceilingSpike>().deactivate();
         stalamiteSpwaner.SetActive(false);
+        startTimer=true;
     }    
 }

@@ -23,6 +23,8 @@ public class EnemyScript : MonoBehaviour
 
     public GameObject enemyCounter;
 
+    public GameObject healthPickUp;
+
 
     // Start is called before the first frame update
     void Start()
@@ -40,7 +42,7 @@ public class EnemyScript : MonoBehaviour
         //health 
         if (health<=(maxHealth*0.3f))
         {
-            canExecute = true;
+            //canExecute = true;
         }
         if(tempHealth != health)
         {
@@ -114,13 +116,18 @@ public class EnemyScript : MonoBehaviour
     {
         canAttack = false;
         attackLocation.GetComponent<Collider>().enabled = true;
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         attackLocation.GetComponent<Collider>().enabled = false;
         canAttack = true;
     }
     public IEnumerator Dead()
     {
-
+        int randomNum = 0;
+        randomNum = Random.Range(0, 100);
+        if(randomNum>=80)
+        {
+            Instantiate(healthPickUp, this.transform.position, Quaternion.identity);
+        }
         player.GetComponent<Player>().leftWallCheck.GetComponent <WallCollider>().isTouchingWall = false;
         player.GetComponent<Player>().rightWallCheck.GetComponent<WallCollider>().isTouchingWall = false;
         yield return new WaitForSeconds(0.01f);

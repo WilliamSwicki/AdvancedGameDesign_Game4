@@ -14,11 +14,15 @@ public class Player : MonoBehaviour
     Vector3 dir;
     public float speed;
     public float jumpPower;
+
     public float health;
     public float healthAmt;
     public float maxHealth;
     public Image healthBar;
     public float tempHealth;
+
+    float iFrames;
+
     public GameObject blood;
     public GameObject sandParticles;
 

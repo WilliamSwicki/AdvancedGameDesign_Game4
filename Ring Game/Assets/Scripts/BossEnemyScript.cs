@@ -45,7 +45,7 @@ public class BossEnemyScript : EnemyScript
         
         if (health <= (maxHealth * 0.3f))
         {
-            canExecute = true;
+            //canExecute = true;
         }
         if(tempHealth != health)
         {

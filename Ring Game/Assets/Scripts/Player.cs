@@ -21,8 +21,6 @@ public class Player : MonoBehaviour
     public Image healthBar;
     public float tempHealth;
 
-    float iFrames;
-
     public GameObject blood;
     public GameObject sandParticles;
 
@@ -84,6 +82,7 @@ public class Player : MonoBehaviour
             if (tempHealth > health)
             {
                 audioSource.clip = clip[0];
+                audioSource.time = 0.1f;
                 audioSource.Play();
                 StartCoroutine(DamageFlash());
                 Instantiate(blood,this.transform.position,Quaternion.identity);
@@ -92,8 +91,9 @@ public class Player : MonoBehaviour
         }
         if(health <= 0)
         {
-            audioSource.clip = clip[4];
-            audioSource.Play();
+            //audioSource.clip = clip[4];
+            //audioSource.time = 0.7f;
+            //audioSource.Play();
         }
 
         clipAmt = currentClip / maxClipSize;
@@ -166,6 +166,7 @@ public class Player : MonoBehaviour
             if (jumpCount >0)
             {
                 audioSource.clip = clip[3];
+                audioSource.time = 0.2f;
                 audioSource.Play();
                 StartCoroutine(jumpTimer());
                 rb.AddForce((Vector3.up*jumpPower), ForceMode.Impulse);
@@ -178,6 +179,7 @@ public class Player : MonoBehaviour
         if(context.performed)
         {
             audioSource.clip = clip[5];
+            audioSource.time = 0.5f;
             audioSource.Play();
             anim.SetBool("isAttacking", true);
             if (!isAttacking)
@@ -201,6 +203,7 @@ public class Player : MonoBehaviour
             if (currentClip > 0 && fireCooldown<=0)
             {
                 audioSource.clip = clip[2];
+                audioSource.time = 0.4f;
                 audioSource.Play();
                 Instantiate(bullet, attackLocation.transform.position, Quaternion.identity);
                 currentClip--;

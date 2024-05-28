@@ -26,6 +26,7 @@ public class FadeToBlack : MonoBehaviour
             if (playCount == 0)
             {
                 player.GetComponent<Player>().audioSource.clip = player.GetComponent<Player>().clip[4];
+                player.GetComponent<Player>().audioSource.time = 0.7f;
                 player.GetComponent<Player>().audioSource.Play();
                 playCount++;
             }

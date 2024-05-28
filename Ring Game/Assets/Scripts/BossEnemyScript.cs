@@ -19,6 +19,7 @@ public class BossEnemyScript : EnemyScript
     public GameObject stalamiteSpwaner;
     public GameObject stalamiteTell;
     bool startTimer = true;
+    private AudioSource audio;
 
     /*public GameObject[] enemySpwan;
     public GameObject enemy;*/
@@ -33,6 +34,7 @@ public class BossEnemyScript : EnemyScript
         player = GameObject.FindWithTag("Player");
         canAttack = true;
         target = GameObject.FindWithTag("Center");
+        audio = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -148,6 +150,8 @@ public class BossEnemyScript : EnemyScript
                     case 4:
                     if(health<=(maxHealth*0.5f))
                         Colaspe();
+                    else
+                        startTimer = true;
                     break;
                 default:
                     break;
@@ -167,6 +171,8 @@ public class BossEnemyScript : EnemyScript
     }
     void Colaspe()
     {
+        audio.time = 2.5f;
+        audio.Play();
         stalamiteTell.GetComponent<FallingRock>().isFalling = true;
         player.GetComponent<Animator>().SetTrigger("ScreenShake");
     }

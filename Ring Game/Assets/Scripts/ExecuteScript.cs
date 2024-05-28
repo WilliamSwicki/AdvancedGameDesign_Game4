@@ -24,6 +24,7 @@ public class ExecuteScript : MonoBehaviour
             if(other.gameObject.GetComponent<EnemyScript>().canExecute && player.GetComponent<Player>().isExecuting)
             {
                 player.GetComponent<Player>().audioSource.clip = player.GetComponent<Player>().clip[1];
+                player.GetComponent<Player>().audioSource.time = 0.4f;
                 player.GetComponent<Player>().audioSource.Play();
                 player.GetComponent<Player>().health += 10;
                 player.GetComponent<Player>().currentClip += 1;

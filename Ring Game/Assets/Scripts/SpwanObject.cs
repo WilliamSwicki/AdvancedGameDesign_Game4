@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SpwanObject : MonoBehaviour
 {
-    public GameObject obj;
+    public GameObject[] objs;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,8 +17,15 @@ public class SpwanObject : MonoBehaviour
     {
         
     }
-    public void spwanObject()
+    public void spwanObject(int i)
     {
-        obj.gameObject.SetActive(true);
+        objs[i].gameObject.SetActive(true);
+    }
+    public void spwanAllObjects()
+    {
+        for(int i = 0; i < objs.Length; i++)
+        {
+            objs[i].gameObject.SetActive(true);
+        }
     }
 }

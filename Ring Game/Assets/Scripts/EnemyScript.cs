@@ -24,7 +24,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject enemyCounter;
 
     public GameObject healthPickUp;
-
+    private Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +34,7 @@ public class EnemyScript : MonoBehaviour
         canAttack = true;
         target = GameObject.FindWithTag("Center");
         tempHealth = health;
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -51,8 +52,9 @@ public class EnemyScript : MonoBehaviour
             StartCoroutine(DamageFlash());
         }
         tempHealth = health;
-        if(health<=0)
+        if(health<=0&&health >= -9999)
         {
+            health = -99999;
             StartCoroutine(Dead());
         }
         if (canExecute)
@@ -122,15 +124,20 @@ public class EnemyScript : MonoBehaviour
     }
     public IEnumerator Dead()
     {
+        canMove = false;
         int randomNum = 0;
+        this.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
         randomNum = Random.Range(0, 100);
-        if(randomNum>=80)
+        
+        
+        anim.SetBool("isDead",true);
+        yield return new WaitForSeconds(0.4f);
+player.GetComponent<Player>().leftWallCheck.GetComponent <WallCollider>().isTouchingWall = false;
+        player.GetComponent<Player>().rightWallCheck.GetComponent<WallCollider>().isTouchingWall = false;
+        if (randomNum >= 50)
         {
             Instantiate(healthPickUp, this.transform.position, Quaternion.identity);
         }
-        player.GetComponent<Player>().leftWallCheck.GetComponent <WallCollider>().isTouchingWall = false;
-        player.GetComponent<Player>().rightWallCheck.GetComponent<WallCollider>().isTouchingWall = false;
-        yield return new WaitForSeconds(0.01f);
         Destroy(this.gameObject);
     }
     public IEnumerator DamageFlash()

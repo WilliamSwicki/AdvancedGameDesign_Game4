@@ -16,7 +16,7 @@ public class FallingRock : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         startPos = transform.position;
-        endPos = new Vector3(this.transform.position.x, 10.57f, this.transform.position.z);
+        endPos = new Vector3(this.transform.position.x, 17.61f, this.transform.position.z);
     }
 
     // Update is called once per frame

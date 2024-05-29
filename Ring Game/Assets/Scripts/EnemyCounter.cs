@@ -28,7 +28,7 @@ public class EnemyCounter : MonoBehaviour
         if(enemiesAlive <=2)
         {
             canFightBoss=true;
-            this.GetComponent<SpwanObject>().spwanObject();
+            this.GetComponent<SpwanObject>().spwanAllObjects();
         }
         if (enemiesAlive <= 0)
         {

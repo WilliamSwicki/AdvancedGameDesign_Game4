@@ -20,6 +20,7 @@ public class BossEnemyScript : EnemyScript
     public GameObject stalamiteTell;
     bool startTimer = true;
     private AudioSource audio;
+    private Animator anim;
 
     /*public GameObject[] enemySpwan;
     public GameObject enemy;*/
@@ -29,6 +30,7 @@ public class BossEnemyScript : EnemyScript
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         setTime();
         enemyCounter = GameObject.FindWithTag("Counter");
         player = GameObject.FindWithTag("Player");
@@ -54,8 +56,9 @@ public class BossEnemyScript : EnemyScript
             StartCoroutine(DamageFlash());
             tempHealth = health;
         }
-        if (health <= 0)
+        if (health <= 0 && health>=-999)
         {
+            health = -9999;
             StartCoroutine(Dead());
         }
         if (canExecute)
@@ -201,4 +204,17 @@ public class BossEnemyScript : EnemyScript
         stalamiteSpwaner.SetActive(false);
         startTimer=true;
     }    
+    IEnumerator Dead()
+    {
+        canMove = false;
+       
+        this.transform.GetChild(0).transform.GetChild(0).gameObject.SetActive(false);
+
+        anim.SetBool("isDead", true);
+        yield return new WaitForSeconds(0.11f);
+        player.GetComponent<Player>().leftWallCheck.GetComponent<WallCollider>().isTouchingWall = false;
+        player.GetComponent<Player>().rightWallCheck.GetComponent<WallCollider>().isTouchingWall = false;
+        
+        Destroy(this.gameObject);
+    }
 }

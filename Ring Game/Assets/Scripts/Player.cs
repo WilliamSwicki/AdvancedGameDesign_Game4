@@ -89,8 +89,10 @@ public class Player : MonoBehaviour
             }
             tempHealth = health;
         }
-        if(health <= 0)
+        if(health <= 0 && health >= -999999)
         {
+            health = -9999999;
+            StartCoroutine(Dead());
             //audioSource.clip = clip[4];
             //audioSource.time = 0.7f;
             //audioSource.Play();
@@ -233,7 +235,7 @@ public class Player : MonoBehaviour
     {
         rayLength = 0;
         yield return new WaitForSeconds(0.25f);
-        rayLength = 0.5f;
+        rayLength = 0.6f;
     }
     public IEnumerator Executing()
     {
@@ -261,5 +263,11 @@ public class Player : MonoBehaviour
             yield return new WaitForSeconds(0.25f);
             sprite.gameObject.GetComponent<SpriteRenderer>().color = Color.white;
         }
+    }
+    public IEnumerator Dead()
+    {
+        anim.SetBool("isDead", true);
+        yield return new WaitForSeconds(0.6f);
+        anim.SetBool("isDead", false);
     }
 }

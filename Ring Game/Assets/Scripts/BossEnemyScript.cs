@@ -20,7 +20,6 @@ public class BossEnemyScript : EnemyScript
     public GameObject stalamiteTell;
     bool startTimer = true;
     private AudioSource audio;
-    private Animator anim;
 
     /*public GameObject[] enemySpwan;
     public GameObject enemy;*/
@@ -138,7 +137,7 @@ public class BossEnemyScript : EnemyScript
         if (timeBetween <= 0)
         {
             startTimer = false;
-            randomNumber = Random.Range(1,5);
+            randomNumber = Random.Range(4,4);
             switch (randomNumber)
             {
                 case 1:
@@ -198,10 +197,12 @@ public class BossEnemyScript : EnemyScript
     IEnumerator ColaspeTime()
     {
         stalamiteSpwaner.SetActive(true);
+        canMove = false;
         stalamiteSpwaner.GetComponent<ceilingSpike>().activate();
         yield return new WaitForSeconds(1f);
         stalamiteSpwaner.GetComponent<ceilingSpike>().deactivate();
         stalamiteSpwaner.SetActive(false);
+        canMove=true;
         startTimer=true;
     }    
     IEnumerator Dead()

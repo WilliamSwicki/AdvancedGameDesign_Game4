@@ -20429,7 +20429,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65c7dc0b928b0574c953c4b59b8423fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  winScreen: 0
+  winScreen: 2
 --- !u!114 &653598794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53567,7 +53567,7 @@ Transform:
   m_GameObject: {fileID: 1981818459}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.174, z: 0}
+  m_LocalPosition: {x: 0, y: 2.411, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -62852,6 +62852,7 @@ MonoBehaviour:
   player: {fileID: 0}
   enemyCounter: {fileID: 0}
   healthPickUp: {fileID: 1129670656496488500, guid: ee5375c958224a44cb0e37304ddd8919, type: 3}
+  anim: {fileID: 0}
   timeBetween: 0
   randomNumber: 0
   bullet: {fileID: 7751096600540386147, guid: e5d8cc2183c7d034f89f05e575008fcb, type: 3}

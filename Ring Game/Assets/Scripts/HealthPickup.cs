@@ -22,6 +22,12 @@ public class HealthPickup : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             other.gameObject.GetComponent<Player>().health += health;
+
+            if (other.gameObject.GetComponent<Player>().health > other.gameObject.GetComponent<Player>().maxHealth)
+            {
+                other.gameObject.GetComponent<Player>().health = other.gameObject.GetComponent<Player>().maxHealth;
+            }
+
             other.gameObject.GetComponent<Player>().currentClip += ammo;
             if(other.gameObject.GetComponent<Player>().currentClip > other.gameObject.GetComponent<Player>().maxClipSize)
             {

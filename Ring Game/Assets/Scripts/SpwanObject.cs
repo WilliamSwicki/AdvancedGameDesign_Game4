@@ -25,7 +25,11 @@ public class SpwanObject : MonoBehaviour
     {
         for(int i = 0; i < objs.Length; i++)
         {
-            objs[i].gameObject.SetActive(true);
+            if (objs[i].gameObject != null)
+            {
+                objs[i].gameObject.SetActive(true);
+            }
+
         }
     }
 }

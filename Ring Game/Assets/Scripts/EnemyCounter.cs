@@ -7,6 +7,7 @@ public class EnemyCounter : MonoBehaviour
     public int enemiesAlive;
     public GameObject[] enemies;
     public bool canFightBoss = false;
+    bool objsSpwaned = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,7 @@ public class EnemyCounter : MonoBehaviour
         if(enemiesAlive <=2)
         {
             canFightBoss=true;
+            objsSpwaned=true;
             this.GetComponent<SpwanObject>().spwanAllObjects();
         }
         if (enemiesAlive <= 0)

@@ -18,7 +18,7 @@ public class ceilingSpike : MonoBehaviour
     {
         if (canMove)
         {
-transform.RotateAround(boss.target.transform.position, Vector3.up, (boss.dir * (boss.speed * 1.25f)) * Time.deltaTime);
+transform.RotateAround(boss.target.transform.position, Vector3.up, (boss.dir * (boss.speed * 1.75f)) * Time.deltaTime);
         }
         
     }

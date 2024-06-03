@@ -24,7 +24,7 @@ public class EnemyScript : MonoBehaviour
     public GameObject enemyCounter;
 
     public GameObject healthPickUp;
-    private Animator anim;
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
